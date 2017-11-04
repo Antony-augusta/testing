@@ -39,12 +39,10 @@ function groupingitems(items, type, assetslength) {
             for (var amount in groups[groupName]) {
                 if (type == 1) {
                     total += parseFloat(groups[groupName][amount].assetsEstimation);
-                } else if (type == 2) {
-                    if (groups[groupName][amount].isasset) {
+                } else if (type == 2 || groups[groupName][amount].isasset) {
                         total += parseFloat(groups[groupName][amount].outstandingLoanValue);
-                    } else {
-                        total += parseFloat(groups[groupName][amount].debyEstimation);
-                    }
+                } else if (type == 2 || !groups[groupName][amount].isasset){
+                     total += parseFloat(groups[groupName][amount].debyEstimation);
                 }
             }
             maininner.push({
